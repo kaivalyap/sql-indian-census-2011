@@ -32,22 +32,41 @@ select sum(population) from population_census11;
 select avg(growth)*100 from literacy_census11; 
 
 -- statewise average growth
-select state, avg(growth)*100 Average_Growth from literacy_census11 group by state order by Average_Growth desc;
+select state, avg(growth)*100 Average_Growth 
+from literacy_census11 
+group by state 
+order by Average_Growth desc;
 
 -- statewise average sex ratio
-select state, round(avg(Sex_Ratio), 0) Average_sex_ratio from literacy_census11 group by state;
+select state, round(avg(Sex_Ratio), 0) Average_sex_ratio 
+from literacy_census11 
+group by state;
 
 -- statewise average literacy
-select state, avg(Literacy) Average_Literacy from literacy_census11 group by state;
+select state, avg(Literacy) Average_Literacy 
+from literacy_census11 
+group by state;
 
 -- states with average literacy greater thean 90%
-select state, avg(Literacy) Average_Literacy from literacy_census11 group by state having Average_Literacy > .90 order by Average_Literacy desc;
+select state, avg(Literacy) Average_Literacy 
+from literacy_census11 
+group by state 
+having Average_Literacy > .90 
+order by Average_Literacy desc;
 
 -- Top 3 states with highest growth ration
-select state, avg(growth)*100 Average_Growth from literacy_census11 group by state order by Average_Growth desc limit 3;
+select state, avg(growth)*100 Average_Growth 
+from literacy_census11 
+group by state 
+order by Average_Growth desc 
+limit 3;
 
 -- Bottom 3 states with highest growth ration
-select state, avg(growth)*100 Average_Growth from literacy_census11 group by state order by Average_Growth asc limit 3;
+select state, avg(growth)*100 Average_Growth 
+from literacy_census11 
+group by state 
+order by Average_Growth asc 
+limit 3;
 
 -- Getting top 3 and bottom 3 states in literacy rate in a single output 
 -- using temporary tables, subqueries and union
@@ -60,7 +79,10 @@ create temporary table topstates (
 );
 
 insert into topstates
-select state, avg(Literacy) Average_Literacy from literacy_census11 group by state order by Average_Literacy desc; 
+select state, avg(Literacy) Average_Literacy 
+from literacy_census11 
+group by state 
+order by Average_Literacy desc; 
 
 select * from topstates limit 3;
 
@@ -72,7 +94,10 @@ create temporary table bottomstates (
 );
 
 insert into bottomstates
-select state, avg(Literacy) Average_Literacy from literacy_census11 group by state order by Average_Literacy asc; 
+select state, avg(Literacy) Average_Literacy 
+from literacy_census11 
+group by state 
+order by Average_Literacy asc; 
 
 select * from bottomstates limit 3;
 
@@ -98,7 +123,11 @@ select * from bottomstates order by bottomstates asc limit 3) b;
 
 
 -- states starting with letter 'A'
-select distinct state from literacy_census11 where upper(state) like "A%";
+select distinct state 
+from literacy_census11 
+where upper(state) like "A%";
 
 -- states starting with letter 'A' and ending with letter 'M'
-select distinct state from literacy_census11 where upper(state) like "A%M";
+select distinct state 
+from literacy_census11 
+where upper(state) like "A%M";
